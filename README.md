@@ -30,7 +30,8 @@ The following products / tools are needed to contribute / fork.
 * NCrunch [http://www.ncrunch.net/](http://www.ncrunch.net/ http://www.ncrunch.net/)
 
 ## Authors
-* Michael Schnyder
+* Simon Stephan
+* Cyril Halmo
 
 ## License
 Licensed under the MIT License
