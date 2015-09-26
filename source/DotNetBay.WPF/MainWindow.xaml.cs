@@ -32,6 +32,11 @@ namespace DotNetBay.WPF
             get { return this.auctions; }
         }
 
+        public void Reload()
+        {
+            
+        }
+
         public MainWindow()
         {
             if ((Application.Current as App) != null)
@@ -48,13 +53,16 @@ namespace DotNetBay.WPF
 
         public void OpenSellView(object sender, RoutedEventArgs e)
         {
-            var sellView = new SellView();
+            var sellView = new SellView(this.Auctions);
             sellView.ShowDialog();
         }
 
         public void PlaceBid(object sender, RoutedEventArgs e)
         {
-            
+            var id = long.Parse(((Button) sender).Tag.ToString());
+            var auction = (Auction) this.Auctions.First(a => a.Id == id);
+            var bidView = new BidView(auction);
+            bidView.ShowDialog();
         }
 
     }

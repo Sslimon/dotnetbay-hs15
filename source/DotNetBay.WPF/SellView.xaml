@@ -41,7 +41,7 @@
         <wpftk:DateTimePicker Name="Start" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"></wpftk:DateTimePicker>
         <wpftk:DateTimePicker Name="End" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"></wpftk:DateTimePicker>
         <TextBox Name="Image" Grid.Row="6" Grid.Column="1"></TextBox>
-        <Button Grid.Row="6" Grid.Column="2">...</Button>
+        <Button Grid.Row="6" Grid.Column="2" Click="SelectImage">...</Button>
         
         <Grid Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             

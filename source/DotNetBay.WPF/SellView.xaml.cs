@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DotNetBay.Core;
 using DotNetBay.Model;
+using Microsoft.Win32;
+using Xceed.Wpf.DataGrid.Converters;
 
 namespace DotNetBay.WPF
 {
@@ -21,9 +25,13 @@ namespace DotNetBay.WPF
     /// </summary>
     public partial class SellView : Window
     {
-        public SellView()
+
+        private ObservableCollection<Auction> Auctions;
+
+        public SellView(ObservableCollection<Auction> auctions)
         {
             this.InitializeComponent();
+            this.Auctions = auctions;
         }
 
         public void AddAuction(object sender, RoutedEventArgs e)
@@ -33,10 +41,13 @@ namespace DotNetBay.WPF
             var service = new AuctionService(repo, memberService);
 
             var title = this.Title.Text;
+            var description = this.Description.Text;
             var startdate = DateTime.Parse(this.Start.Text);
             var enddate = DateTime.Parse(this.End.Text);
             var price = double.Parse(this.StartPrice.Text);
             var member = memberService.GetCurrentMember();
+            var image = this.Image.Text;
+            var imageArr = File.ReadAllBytes(image);
 
             var auction = new Auction
             {
@@ -44,10 +55,13 @@ namespace DotNetBay.WPF
                 StartDateTimeUtc = startdate,
                 EndDateTimeUtc = enddate,
                 StartPrice = price,
-                Seller = member
+                Seller = member,
+                Image = imageArr,
+                Description = description
             };
 
             service.Save(auction);
+            this.Auctions.Add(auction);
             this.Cancel(sender, e);
         }
 
@@ -56,5 +70,13 @@ namespace DotNetBay.WPF
             this.Close();
         }
 
+        private void SelectImage(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                this.Image.Text = dialog.FileName;
+            }
+        }
     }
 }
