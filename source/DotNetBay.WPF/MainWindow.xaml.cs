@@ -59,8 +59,7 @@ namespace DotNetBay.WPF
 
         public void PlaceBid(object sender, RoutedEventArgs e)
         {
-            var id = long.Parse(((Button) sender).Tag.ToString());
-            var auction = (Auction) this.Auctions.First(a => a.Id == id);
+            var auction = this.mainWindowGrid.SelectedItem as Auction;
             var bidView = new BidView(auction);
             bidView.ShowDialog();
         }

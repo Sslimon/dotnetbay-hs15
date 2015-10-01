@@ -29,7 +29,7 @@
             New Auction
         </Button>
 
-        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0, 10, 0, 0" ItemsSource="{Binding Path=Auctions}" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid Name="mainWindowGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0, 10, 0, 0" ItemsSource="{Binding Path=Auctions}" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Title" Width="SizeToCells" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
@@ -62,7 +62,7 @@
                 <DataGridTemplateColumn Header="Place Bid" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Background="Chartreuse" Click="PlaceBid" Tag="{Binding Path=Id}" Visibility="{Binding Path=IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Button Background="Chartreuse" Click="PlaceBid" Visibility="{Binding Path=IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 Place
                             </Button>
                         </DataTemplate>
